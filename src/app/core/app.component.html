@@ -1,0 +1,50 @@
+<ion-app>
+  <ion-split-pane when="md" contentId="content">
+    <ion-menu contentId="content">
+      <ion-header>
+        <!-- <ion-toolbar>
+          <ion-title class="ion-text-uppercase">Menu</ion-title>
+        </ion-toolbar> -->
+      </ion-header>
+      <!-- Content -->
+      <ion-content>
+        <ion-row class="ion-padding">
+          <ion-col size="12" class="ion-align-self-start">
+            <img src="../assets/imgs/deconews.png" alt="">
+          </ion-col>
+          <ion-col size="12" class="ion-align-self-center">
+            <!-- Menu List -->
+            <ion-list class="ion-no-padding">
+              <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+                <ion-item lines="none" class="ion-no-padding" [routerDirection]="'root'" (click)="openPage(p)">
+                  <div class="menu-image" slot="start">
+                    <img [src]="p.image">
+                  </div>
+
+                  <ion-label>
+                    <h1 class="text-size-xs text-color-primary">{{p.title}}</h1>
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12" class="ion-align-self-end">
+            <a class="button-link" target="_blank" [href]="socialLink.facebook" *ngIf="socialLink.facebook">
+              <img logo src="../assets/imgs/fb.png" alt="facebook" />
+            </a>
+            <a class="button-link" target="_blank" [href]="socialLink.twitter" *ngIf="socialLink.twitter">
+              <img logo src="../assets/imgs/tw.png" alt="twitter" />
+            </a>
+            <a class="button-link" target="_blank" [href]="socialLink.youtube" *ngIf="socialLink.youtube">
+              <img logo src="../assets/imgs/yt.png" alt="youtube" />
+            </a>
+            <a class="button-link" target="_blank" [href]="socialLink.instagram" *ngIf="socialLink.instagram">
+              <img logo src="../assets/imgs/in.png" alt="instagram" />
+            </a>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet Id="content" main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,64 @@
+<!-- Page Form-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">Deco New</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid *ngIf="!loading">
+    <ion-row *ngIf="comments.length">
+      <ion-col size="12" *ngIf="post">
+          <!-- List  all comments-->
+          <div class="comments-list box-shadow border-radius margin-bottom ion-padding" *ngFor="let item of comments">
+            <ion-item lines="none" no-padding transparent>
+              <ion-avatar slot="start">
+                <img [src]="item.avatar" />
+              </ion-avatar>
+              <ion-label>
+                <h2 class="ion-padding-end text-size-md text-color-primary font-bold ion-text-wrap">{{item.author_name}}</h2>
+                <h2 class="text-size-xs text-color-primary">{{item.date | date:'d MMMM yyyy'}}</h2>
+              </ion-label>
+            </ion-item>
+            <div  class="ion-text-wrap commnets-read text-size-p text-color-primary" [innerHTML]="item.content.rendered"></div>
+          </div>
+      </ion-col>
+    </ion-row>
+    <!-- No comment -->
+    <ion-row *ngIf="!comments.length" class="ion-align-items-center">
+      <ion-col size="12">
+        <div class="no-post ion-text-center">
+          <img src="../assets/imgs/decoLogo.png" alt="" />
+          <h1 class="text-size-xl text-color-primary">Uups, no data!</h1>
+          <p class="text-size-md text-color-primary">Sorry no comment here</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <news-empty-state 
+    *ngIf="isEmptyStateActive()" 
+    [title]="emptyState.title" 
+    [subtitle]="emptyState.subtitle"
+  ></news-empty-state>
+
+  <news-loading *ngIf="loading"></news-loading>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button *ngIf="isCommentEnabled(post)" expand="full" class="default-button" (click)="openComment($event)">Write a Comment</ion-button>
+  </ion-toolbar>
+</ion-footer>

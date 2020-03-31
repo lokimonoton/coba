@@ -1,0 +1,20 @@
+<ion-item lines="none" class="box-shadow ion-no-padding border-radius" *ngIf="data" (click)="openSinglePost(data)">
+  <ion-thumbnail slot="start">
+    <img class="border-radius" [src]="data.image" alt="">
+    <span class="border-radius text-uppercase category">{{data.category}}</span>
+  </ion-thumbnail>
+  <ion-label>
+    <h2 class="ion-text-wrap text-size-xs text-color-primary margin-bottom">{{data.title}}dfdf</h2>
+    <div class="data-info">
+      <!-- Data time -->
+      <div class="time">
+        <span class="time-icon dark ion-no-margin"></span>
+        <p class="text-size-p ion-no-margin text-color-primary">{{data.time | date:'d MMMM yyyy'}}</p>
+      </div>
+      <!-- Bookmark -->
+      <div class="bookMark-dark ion-margin-start" (click)="bookmark(data, $event)"
+        [ngClass]="{'active' : data.bookmark}">
+      </div>
+    </div>
+  </ion-label>
+</ion-item>

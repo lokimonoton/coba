@@ -1,0 +1,36 @@
+.background-size {
+  height: 250px;
+}
+
+.text-size-xl {
+  font-weight: 400;
+}
+
+ion-card {
+  margin-top: -20px;
+  --background: var(--deco-background-primary, #ffffff);
+  --color: var(--deco-background-dark, #1b1e28);
+
+
+  .card-content-md p {
+    margin-bottom: 5px;
+  }
+
+  .category {
+    top: 0;
+    left: 0;
+  }
+
+  ion-label,
+  .commnets,
+  .time-icon {
+    display: flex !important;
+    align-items: center;
+    overflow: visible;
+
+    p {
+      margin: 0 10px;
+      display: block;
+    }
+  }
+}

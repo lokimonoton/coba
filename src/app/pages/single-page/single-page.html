@@ -1,0 +1,75 @@
+<!-- Page Single Page -->
+<ion-header class="box-shadow">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">DECO NEWS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col size="12" class="ion-no-padding" *ngIf="post">
+        <!-- Header Images -->
+        <div class="no-post-image">
+          <div class="background-size" id="elastic-header" [hidden]="!post.image"
+            [ngStyle]="{'background-image': 'url(' + post.image + ')'}"></div>
+        </div>
+        <ion-card class="ion-padding box-shadow border-radius" single-page>
+          <ion-card-header class="ion-no-padding">
+            <!-- Name Category -->
+            <span class="ion-float-start category border-radius">{{post.category}}</span>
+            <!-- Bookmark -->
+            <ion-button class="ion-float-end bookMark-dark ion-margin-horizontal" fill="clear"
+              (click)="bookmark(post, $event)" [ngClass]="{'active' : post.bookmark}">
+            </ion-button>
+            <!-- Share -->
+            <ion-button class="ion-float-end share-icon" (click)="share(post, $event)" fill="clear">
+            </ion-button>
+            <div class="clearfix"></div>
+            <!--- Title Post -->
+            <h1 class="text-size-xl text-color-primary" [innerHTML]="htmlTitle"></h1>
+
+            <!--Tags-->
+            <ion-col size="12" *ngFor="let item of post.tagsList">
+              <span class="tag" (click)="openHashtag(item, $event)">
+                #{{item.slug}}
+              </span>
+            </ion-col>
+            <ion-item class="ion-no-padding transparent" lines="none">
+              <!-- Time -->
+              <ion-label slot="start">
+                <div class="time">
+                  <span class="icon time-icon dark"></span>
+                  <p class="text-size-p text-color-primary">{{post.time | date:'d MMMM yyyy'}}</p>
+                </div>
+                <!-- Commnets -->
+                <div class="commnets ion-margin-horizontal" (click)="openCommentList(post, $event)">
+                  <span class="comment-icon "></span>
+                  <p class="text-size-p text-color-primary"> {{ numberOfComment > 99 ? '99+' : numberOfComment }}
+                    comments</p>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+          <!-- Content -->
+          <ion-card-content class="ion-no-padding">
+            <!--- Content with web site-->
+            <div [innerHTML]="htmlContent"></div>
+          </ion-card-content>
+        </ion-card>
+        <news-list [categoryId]="post.categoryId" [postId]="post.id" [title]=""
+          (onItemClick)="onItemClick($event)"></news-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <!-- Wtite a comment-->
+    <ion-button *ngIf="isCommentEnabled(post)" expand="full" class="default-button" (click)="openComment(post, $event)">
+      Write a Comment</ion-button>
+  </ion-toolbar>
+</ion-footer>

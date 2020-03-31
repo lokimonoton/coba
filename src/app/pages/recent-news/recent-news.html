@@ -1,0 +1,47 @@
+<ion-header class="box-shadow">
+  <ion-toolbar *ngIf="!isSearchActive">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Deco News</ion-title>
+    <ion-button class="search" fill="clear" (click)="setSearchActive(true, $event)">
+      <span class="search-icon"></span>
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isSearchActive" class="ion-hide ion-visible">
+    <ion-searchbar showCancelButton="always" [(ngModel)]="searchText" (ionClear)="setSearchActive(false, $event)"
+      (ionCancel)="setSearchActive(false, $event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circular"
+      refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+
+  <news-list
+    #newsListSticky
+   *ngIf="isStickyEnabled"
+   [sticky]="featured"
+   [categoryId]="categoryId"
+   [tags]="tagId"
+   [search]="searchText"
+   [doRefresh]="doRefresh"
+   (onRefreshCompleted)="onRefreshCompleted()"
+   [title]="title"></news-list>
+
+  <news-list 
+    #newsList
+    *ngIf="!isStickyEnabled"
+    [categoryId]="categoryId"
+    [tags]="tagId"
+    [search]="searchText"
+    [doRefresh]="doRefresh"
+    (onRefreshCompleted)="onRefreshCompleted()"
+    [title]="title"></news-list>
+</ion-content>

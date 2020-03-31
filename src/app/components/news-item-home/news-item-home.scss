@@ -1,0 +1,27 @@
+:host-context(news-item-home) {
+  ion-card {
+    --background: var(--deco-background-primary, #ffffff);
+
+    img {
+      height: 120px;
+    }
+
+    ion-card-content {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      min-height: 120px;
+      justify-content: space-between;
+    }
+
+    .card-image {
+      position: relative;
+
+      .category {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+      }
+    }
+  }
+}

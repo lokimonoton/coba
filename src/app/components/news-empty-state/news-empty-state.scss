@@ -1,0 +1,21 @@
+news-empty-state,
+ion-grid,
+ion-row,
+ion-col {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        display: block;
+        margin-left: 15px;
+    }
+
+    ion-spinner {
+        --color: var(--deco-background-dark, #1b1e28);
+        height: 35px;
+        width: 35px;
+    }
+}

@@ -1,0 +1,14 @@
+:host-context(page-category) {
+  .text-size-md,
+  .text-size-xs {
+    font-weight: 400;
+  }
+  ion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    --background: var(--deco-background-primary, #ffffff) !important;
+  }
+}

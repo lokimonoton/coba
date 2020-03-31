@@ -1,0 +1,25 @@
+<!-- News list -->
+
+<ion-grid *ngIf="posts.length > 0">
+  <ion-row>
+    <!--Title Post-->
+    <ion-col size="12">
+      <h2 class="text-size-lg text-color-primary padding-start">{{title}}</h2>
+    </ion-col>
+    <ion-col size="12" *ngFor="let item of posts">
+      <news-item [data]="item" (onItemClick)="itemClick($event)"></news-item>
+    </ion-col>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-row>
+</ion-grid>
+
+<news-empty-state 
+  *ngIf="isEmptyStateActive()" 
+  [title]="emptyState.title" 
+  [subtitle]="emptyState.subtitle"
+></news-empty-state>
+
+<news-loading *ngIf="loading"></news-loading>

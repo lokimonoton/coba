@@ -1,0 +1,62 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+.dark-themes {
+
+  --deco-background-primary: #1B1E28;
+  --deco-background-secondary: #fafafa;
+  --deco-background-dark: #ffffff;
+  --deco-background-dark-basic: #D8D8D8;
+
+  --deco-color-primary: #fff;
+  --deco-color-secondary: #282C39;
+  --deco-color-danger: #CB0000;
+  --deco-color-dark: #7F7E96;
+
+  --deco-icon-color: #7F7E96;
+
+  /* Settings Fonts Size And Icon Size
+=======================================================
+=======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 20px;
+  --h2-font-size: 18px;
+  --h3-font-size: 16px;
+  --h4-font-size: 15px;
+  --h5-font-size: 14px;
+  --h6-font-size: 12px;
+  --text-font-size: 14px;
+
+  /* Settings Fonts Size Icon
+=======================================================
+=======================================================*/
+
+  --icon-size-small: 20px;
+  --icon--size-medium: 32px;
+  --icon-size-large: 60px;
+
+  /* Settings Font Span
+=======================================================
+=======================================================*/
+
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+
+  /* SETTINGS CHECKBOX
+=======================================================
+=======================================================*/
+  ion-checkbox {
+    --border-color: #fff;
+    --border-color-checked: #fff;
+    --background-checked: #fff;
+    --checkmark-color: #1b1e28;
+  }
+
+  .dark {
+    background-image: url(../assets/icon/time.png);
+  }
+
+
+}

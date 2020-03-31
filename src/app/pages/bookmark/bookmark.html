@@ -1,0 +1,33 @@
+<!-- Page About -->
+<ion-header class="box-shadow">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button defaultHref="/"></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-uppercase">Deco News</ion-title>
+    </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="posts.length">
+      <ion-col size="12">
+        <h2 class="text-size-lg text-color-primary ion-margin-bottom ion-padding-start">Bookmark News</h2>
+        <ion-button size="small" class="text-size-p text-color-primary" fill="clear" (click)="clearAll()">Clear all</ion-button>
+        <div class="clearfix"></div>
+        <div class="list-bokmark ion-margin-bottom" *ngFor="let item of posts">
+          <news-item [data]="item" [data]="item" (onBookmark)="onBookmark($event)"></news-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!posts.length" class="ion-align-items-center">
+      <ion-col>
+        <div class="no-post ion-text-center">
+          <img src="../assets/imgs/decoLogo.png" alt="" />
+          <h1 class="text-size-xl text-color-primary">Uups, no data!</h1>
+          <p class="text-size-md text-color-primary">Add something to bookmarks by taping on bookmark icon</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,21 @@
+
+ion-grid,
+ion-row {
+  height: 100%;
+}
+
+.commnets-read {
+  padding-left: 55px;
+  margin-top: -15px;
+  color: var(--deco-background-dark, #1b1e28);
+}
+
+.comments-list{
+  background-color: var(--deco-background-primary, #ffffff) !important;
+  margin: 7px 0;
+}
+
+ion-label {
+  display: flex !important;
+  align-items: center;
+}

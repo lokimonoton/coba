@@ -1,0 +1,85 @@
+<ion-header class="box-shadow">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Deco News</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <!-- Segment Btton Home Page -->
+    <ion-segment [(ngModel)]="selectedItem">
+      <ion-segment-button class="ion-text-capitalize" [value]="item.name" *ngFor="let item of categories"
+        (click)="refreshData(item)">
+        {{item.name}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-grid *ngIf="!isEmptyStateActive()">
+    <!-- Featured News -->
+    <ion-row class="ion-align-items-center" *ngIf="posts.length">
+      <ion-col>
+        <h1 class="ion-padding-start text-size-lg text-color-primary ion-no-margin">Featured News</h1>
+      </ion-col>
+      <ion-col class="ion-text-end">
+        <ion-button size="small" fill="clear" class="button-title" (click)="openViewAll(true, $event)">View All
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- Slider For Featured News -->
+    <ion-row *ngIf="posts.length">
+      <ion-col size="12">
+        <ion-slides #wizardSlider pager="true">
+          <ion-slide class="background-size ion-padding" *ngFor="let item of posts"
+            [ngStyle]="{'background-image': 'url(' + item.image + ')'}" (click)="openSinglePost(item)">
+            <!--Bookmark-->
+            <ion-button fill="clear" class="bookMark" (click)="bookmark(item, $event)"
+              [ngClass]="{'active' : item.bookmark}">
+            </ion-button>
+            <span class="category border-radius text-uppercase">{{item.category}}</span>
+            <h2 class="ion-text-start wizard-title" [innerHTML]="getHtmlTitle(item.title)"></h2>
+            <div class="clearfix"></div>
+            <!-- Time -->
+            <div class="time">
+              <span class="icon time-icon"></span>
+              <p class="ion-margin-end ion-no-margin text-size-p text-color-primary">{{item.time | date:'d MMMM yyyy'}}
+              </p>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <!-- Name Category -->
+    <ion-row class="ion-align-items-center"  *ngIf="postsRecentNews.length">
+      <ion-col class="ion-no-padding">
+        <h1 class="ion-padding-start text-size-lg text-color-primary ion-no-margin">
+          {{selectedCategory ? selectedCategory.name:""}}</h1>
+      </ion-col>
+      <ion-col class="ion-text-end">
+        <ion-button size="small" fill="clear" class="button-title" (click)="openViewAll(false, $event)">View All
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- List Category Posts -->
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let item of postsRecentNews">
+        <news-item-home [data]="item"></news-item-home>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <news-empty-state
+    *ngIf="isEmptyStateActive()" 
+    [title]="emptyState.title" 
+    [subtitle]="emptyState.subtitle">
+  </news-empty-state>
+
+  <news-loading  *ngIf="initialLoading()"></news-loading>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

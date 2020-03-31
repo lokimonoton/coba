@@ -1,0 +1,14 @@
+<ion-card class="ion-no-margin box-shadow border-radius" *ngIf="data" (click)="openSinglePost(data)">
+  <div class="card-image">
+    <img class="border-radius" [src]="data.image" alt="">
+    <span class="border-radius category ion-text-uppercase">{{data.category}}</span>
+  </div>
+  <ion-card-content>
+      <h4 class="ion-text-wrap text-size-xs text-color-primary">{{data.title}}</h4>
+      <!-- Time -->
+      <div class="time">
+        <span class="icon time-icon dark"></span>
+        <p class="text-size-p text-color-primary">{{data.time | date:'d MMMM yyyy'}}</p>
+      </div>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,27 @@
+<!-- Header -->
+<ion-header class="box-shadow">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button defaultHref="/"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">Deco News</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <!--- Category List -->
+      <ion-col size="6" size-md="4" *ngFor="let item of categories" (click)="openCategory(item)">
+        <ion-card class="ion-no-margin box-shadow ion-text-center ion-padding">
+          <h2 class="text-size-md text-color-primary ion-text-capitalize">{{item.name}}</h2>
+          <h3 class="text-size-xs ion-margin-top ion-text-capitalize">{{item.count}} Posts</h3>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
